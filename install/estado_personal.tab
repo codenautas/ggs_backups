@@ -1,0 +1,6 @@
+estado      |predeterminado|exp_parcial|exp_total|descripcion
+SELECCIONADO|true          |true       |true     |seleccionado por RRHH; está por iniciarse el proceso, el JD no se contactó aún
+CONFIRMADO  |              |true       |true     |persona que fue seleccionada por RRHH, fue contactada por el JD, confirmó que va a trabar. Debería darse de alta en el sistema de INDEC
+BAJA        |              |true       |true     |debe especificar la razón, si no pudo ser contactado por varios intentos, si rechazó
+REUBICAR    |              |           |         |fue contactado, aceptó el trabajo, pero no se necesita en la comuna en la que estaba anotado, debe asignarse a otra columna
+POSTULADO   |              |           |         |Propuesta que debe ser enviado a RRHH para su selección

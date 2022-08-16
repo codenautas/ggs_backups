@@ -1,0 +1,57 @@
+-- set search_path = ggs_backups;
+--
+--  ATENCIÓN AHORA IMPUTA EL PROCEDIMIENTO
+-- 
+-- 
+-- -- -- /*
+-- -- update externos e 
+-- --   set provincia = p.provincia,
+-- --       comuna = p.comuna,
+-- --       departamento = p.comuna*7,
+-- -- 	  fraccion = p.fraccion,
+-- -- 	  radio = p.radio,
+-- -- 	  segmento = p.segmento
+-- --   from personal p
+-- --   where p.dni=e.dni
+-- --     and e.lote = 506;
+-- -- -- */
+-- 
+-- update externos e set departamento = 0 where lote = 508 and departamento is null;
+-- update externos e set fraccion     = 0 where lote = 508 and fraccion     is null;
+-- update externos e set radio        = 0 where lote = 508 and radio        is null;
+-- update externos e set segmento     = 0 where lote = 508 and segmento     is null;
+-- 
+-- update externos e 
+--   set provincia    = a.provincia   ,
+--       comuna       = a.comuna      ,
+--       departamento = a.departamento,
+--       fraccion     = a.fraccion    ,
+--       radio        = a.radio       ,
+--       segmento     = a.segmento
+--   from externos a
+--   where e.dni = a.dni
+--     and e.departamento = 0
+--     and a.lote = 507
+--     and e.lote = 508;
+-- 
+-- -- /*
+-- -- REPETIR 3 o más veces VECES:
+-- update externos e 
+--   set provincia = p.provincia,
+--       comuna = p.comuna,
+--       departamento = p.departamento,
+-- 	    fraccion = p.fraccion,
+-- 	    radio = p.radio,
+-- 	    segmento = p.segmento
+--   from externos p -- p = postulante o sea padre
+--   where p.dni = e.dni_postulo and p.lote = e.lote
+--     and e.departamento = 0
+--     and e.lote = 508;
+-- -- */
+-- 
+-- select nombre_puesto_indec, provincia is null as pendiente, count(*) from externos 
+--   where lote = 508
+--   group by cube (nombre_puesto_indec, provincia is null)
+--   order by 1, 2;
+--   
+--   
