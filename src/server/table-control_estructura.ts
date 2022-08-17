@@ -35,7 +35,7 @@ function sql_control_estructura(options: typeof defOpts_estructura) {
       .join("")}
     ${Puestos.map(
       (p) => `
-        , count(*) filter (where nombre_puesto_indec = '${p.nombre}') as "${p.abr}"
+        , count(*) filter (where nombre_puesto_externo = '${p.nombre}') as "${p.abr}"
     `
     ).join("")}
     from externos x

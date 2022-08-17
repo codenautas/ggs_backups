@@ -3,7 +3,7 @@
   "version": "0.2.7",
   "private": true,
   "license": "MIT",
-  "description": "Personal del censo",
+  "description": "backups para ggs",
   "main": "dist/server/server-ggs_backups.js",
   "files": [
     "dist",

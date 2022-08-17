@@ -71,7 +71,7 @@ export function personal(
   var definition: TableDefinition = {
     name: opts.name,
     elementName: "persona",
-    title: "personal del censo",
+    title: "personal",
     editable: isCoach || canEdit,
     importCuidado: true,
     fields: [

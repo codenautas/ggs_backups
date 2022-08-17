@@ -23,7 +23,7 @@ export function listado_final(context: TableContext): TableDefinition {
 
       // {name:'comuna'          ,typeName:'text', inTable: false     },
       { name: "depto", typeName: "text" },
-      { name: "prevalidacion_indec", typeName: "text" },
+      { name: "prevalidacion_externo", typeName: "text" },
       { name: "validacion_dpe", typeName: "text" },
     ],
     primaryKey: ["id"],

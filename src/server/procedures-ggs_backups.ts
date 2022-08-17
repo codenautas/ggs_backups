@@ -61,7 +61,7 @@ export const Proceduresggs_backups: ProcedureDef[] = [
                     segmento     = a.segmento
                 from externos a
                 where e.dni = a.dni
-                  and e.puesto_indec = a.puesto_indec
+                  and e.puesto_externo = a.puesto_externo
                   and e.dni_postulo = a.dni_postulo
                   and e.departamento = 0
                   and a.lote = $1

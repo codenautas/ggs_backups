@@ -43,16 +43,16 @@ export function externos(context: TableContext, opts?: any): TableDefinition {
       },
       { name: "puesto", typeName: "text", editable: canEdit, title: "rol" },
       {
-        name: "puesto_indec",
+        name: "puesto_externo",
         typeName: "text",
         editable: canEdit,
-        title: "rol indec",
+        title: "rol externo",
       },
       {
-        name: "nombre_puesto_indec",
+        name: "nombre_puesto_externo",
         typeName: "text",
         editable: canEdit,
-        title: "nombre rol indec",
+        title: "nombre rol externo",
       },
       {
         name: "enviado",
@@ -108,7 +108,7 @@ export function externos(context: TableContext, opts?: any): TableDefinition {
         visible: false,
         defaultDbValue: "2",
       },
-      { name: "provincia_indec", typeName: "text", editable: canEdit },
+      { name: "provincia_externo", typeName: "text", editable: canEdit },
       { name: "comuna", typeName: "integer", editable: canEdit },
       { name: "departamento", typeName: "integer", editable: canEdit },
       {

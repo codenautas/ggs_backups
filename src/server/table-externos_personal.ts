@@ -18,12 +18,12 @@ export function sql_externos_personal(
         coalesce(e.fraccion    ) as f,
         coalesce(e.radio       ) as r,
         coalesce(e.segmento    ) as s,
-        e.nombre_puesto_indec as p,
+        e.nombre_puesto_externo as p,
      case when p.dni is null then 'I' when e.dni is null then 'D' else null end as dif1,
      case when p.dni is not null and e.dni is not null then nullif(concat(
          case when upper(translate(p.apellido,'ÁÉÍÓÚáéíóúÜü','AEIOUaeiouUu')) is distinct from upper(translate(e.apellido,'ÁÉÍÓÚáéíóúÜü','AEIOUaeiouUu')) then 'A' else null end,
          case when upper(translate(p.nombre,'ÁÉÍÓÚáéíóúÜü','AEIOUaeiouUu')) is distinct from upper(translate(e.nombre,'ÁÉÍÓÚáéíóúÜü','AEIOUaeiouUu')) then 'N' else null end,
-         case when p.puesto is distinct from e.puesto_indec and mp.externo is distinct from e.nombre_puesto_indec then 'P' else null end
+         case when p.puesto is distinct from e.puesto_externo and mp.externo is distinct from e.nombre_puesto_externo then 'P' else null end
      ),'') else null end as difs,
      case when coalesce(e.departamento,0) <> coalesce(p.comuna*7,0) then 'D'
         when coalesce(e.fraccion      ,0) <> coalesce(p.fraccion,0) then 'F'
@@ -32,7 +32,7 @@ export function sql_externos_personal(
         else null
      end as difug,
      P.lote lote_personal, P.apellido apellido_personal, P.nombre nombre_personal, P.puesto puesto_personal, 
-     nombre_archivo, E.apellido apellido_indec, E.nombre nombre_indec, E.puesto_indec, e.nombre_puesto_indec, e.lote lote_indec, e.completo_perfil, e.capacitacion
+     nombre_archivo, E.apellido apellido_externo, E.nombre nombre_externo, E.puesto_externo, e.nombre_puesto_externo, e.lote lote_externo, e.completo_perfil, e.capacitacion
      --, (select count(*) from externos e2 where e2.lote=e.lote and e2.dni=e.dni and e2.deshabilitado = 'false') as duplicidad
          from ${
            options.ultimoLote
@@ -62,7 +62,7 @@ export function externos_personal(
       {
         name: "dif1",
         typeName: "text",
-        description: "I=solo Indec, D=solo DGEyC, A=ambos",
+        description: "I=solo Externo, D=solo DGEyC, A=ambos",
       },
       {
         name: "difs",
@@ -86,10 +86,10 @@ export function externos_personal(
       { name: "nombre_personal", typeName: "text" },
       { name: "puesto_personal", typeName: "text" },
       { name: "lote_personal", typeName: "integer" },
-      { name: "apellido_indec", typeName: "text" },
-      { name: "nombre_indec", typeName: "text" },
-      { name: "puesto_indec", typeName: "text" },
-      { name: "nombre_puesto_indec", typeName: "text" },
+      { name: "apellido_externo", typeName: "text" },
+      { name: "nombre_externo", typeName: "text" },
+      { name: "puesto_externo", typeName: "text" },
+      { name: "nombre_puesto_externo", typeName: "text" },
       { name: "completo_perfil", typeName: "text" },
       { name: "capacitacion", typeName: "text" },
     ],

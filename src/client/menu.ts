@@ -34,7 +34,7 @@ function ponerBotonExportar(depot: myOwn.Depot, fieldname:string, label:string, 
         var opts={
             fixedFields:[filtro, ...detailFields.map(({source, target})=>({fieldName:target, value: depot.row[source]}))],
             tableDef:{
-                name:'censo-rrhh'+detailFields.map(({source, target})=>`-${target[0]}${depot.row[source]}${sufix}`).join(''),
+                name:'externo-rrhh'+detailFields.map(({source, target})=>`-${target[0]}${depot.row[source]}${sufix}`).join(''),
                 hiddenColumns:['enviado','observaciones','nivel_educativo','reparticion','referido','lote','exp_parcial','exp_total']
             }
         }

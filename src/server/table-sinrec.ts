@@ -34,7 +34,7 @@ export function sinrec(context: TableContext): TableDefinition {
       { name: "telefono_celular", typeName: "text" },
       { name: "refuerzo_capacitacion", typeName: "text" },
       { name: "tarea_realizada", typeName: "text" },
-      { name: "prevalidacion_indec", typeName: "text" },
+      { name: "prevalidacion_externo", typeName: "text" },
       { name: "importe", typeName: "text" },
       { name: "posee_cbu", typeName: "text" },
       { name: "validacion_dpe", typeName: "text" },

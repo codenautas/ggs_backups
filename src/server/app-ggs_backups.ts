@@ -131,7 +131,7 @@ export class Appggs_backups extends AppBackend {
       });
       menuContent.push({
         menuType: "menu",
-        name: "indec",
+        name: "control",
         menuContent: [
           {
             menuType: "table",
