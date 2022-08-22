@@ -30,7 +30,7 @@ import {
   e_radio,
   e_segmento,
 } from "./table-personal";
-import { externos } from "./table-externos";
+import { backups } from "./table-backups";
 import { externos_personal } from "./table-externos_personal";
 import { ultimo_externos } from "./table-ultimo_externos";
 import { ultimo_externos_personal } from "./table-externos_personal";
@@ -98,88 +98,13 @@ export class Appggs_backups extends AppBackend {
       be
     );
   }
-  getContextForDump(): ContextForDump {
-    var context = super.getContextForDump();
-    context.isAdmin = true;
-    context.isCoach = true;
-    context.isProcesamiento = true;
-    context.isRecepcion = true;
-    return context;
-  }
-  getContext(req: Request): Context {
-    var context = super.getContext(req);
-    context.isAdmin = req.user?.rol == "admin";
-    context.isProcesamiento =
-      context.isAdmin || req.user?.rol == "procesamiento";
-    context.isCoach = context.isProcesamiento || req.user?.rol == "coach";
-    context.isRecepcion =
-      context.isProcesamiento || req.user?.rol == "recepcion";
-    return context;
-  }
-  getMenu(context: Context): MenuDefinition {
-    var { isProcesamiento, isRecepcion } = context;
+  
+  getMenu(): MenuDefinition {
     var menuContent: MenuInfoBase[] = [];
-    if (isRecepcion) {
-      menuContent.push({ menuType: "table", name: "lotes" });
-    }
-    if (context.user?.rol != "recepcion") {
-      menuContent.push({ menuType: "table", name: "personal" });
-      menuContent.push({
-        menuType: "table",
-        name: "e_comuna",
-        label: "estructura",
-      });
-      menuContent.push({
-        menuType: "menu",
-        name: "control",
-        menuContent: [
-          {
-            menuType: "table",
-            name: "matching",
-            table: "ultimo_externos_personal",
-          },
-          {
-            menuType: "table",
-            name: "control",
-            table: "ultimo_control_estructura",
-          },
-          { menuType: "table", name: "registro", table: "ultimo_externos" },
-          { menuType: "proc", name: "imputar_ug" },
-          { menuType: "table", name: "SINREC 1er archivo", table: "sinrec" },
-          {
-            menuType: "table",
-            name: "Listado final para pago",
-            table: "listado_final",
-          },
-        ],
-      });
-    }
-    if (isProcesamiento) {
-      menuContent.push({
-        menuType: "menu",
-        name: "config",
-        label: "configurar",
-        menuContent: [
-          {
-            menuType: "menu",
-            name: "geograficas",
-            label: "UG",
-            menuContent: [
-              { menuType: "table", name: "provincias" },
-              { menuType: "table", name: "comunas" },
-              { menuType: "table", name: "fracciones" },
-              { menuType: "table", name: "radios" },
-            ],
-          },
-          { menuType: "table", name: "dotacion" },
-          { menuType: "table", name: "equipos" },
-          { menuType: "table", name: "puestos" },
-          { menuType: "table", name: "sedes" },
-          { menuType: "table", name: "estado_personal", label: "estados" },
-          { menuType: "table", name: "usuarios" },
-        ],
-      });
-    }
+    menuContent.push({ menuType: "table", name: "lotes" });
+    menuContent.push({ menuType: "menu", name: "config", label: "configurar",
+        menuContent: [ { menuType: "table", name: "usuarios" }, ],
+    });
     return { menu: menuContent };
   }
   clientIncludes(
@@ -210,7 +135,7 @@ export class Appggs_backups extends AppBackend {
       personal,
       sinrec,
       listado_final,
-      externos,
+      externos: backups,
       externos_personal,
       ultimo_externos,
       ultimo_externos_personal,
