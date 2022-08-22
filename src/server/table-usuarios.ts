@@ -40,11 +40,11 @@ export function usuarios(context: TableContext): TableDefinition {
     ],
     primaryKey: ["usuario"],
     foreignKeys: [
-      { references: "personal", fields: ["dni"] },
-      { references: "comunas", fields: ["comuna"] },
+    //   { references: "personal", fields: ["dni"] },
+    //   { references: "comunas", fields: ["comuna"] },
     ],
     constraints: [{ constraintType: "unique", fields: ["dni"] }],
-    detailTables: [{ table: "personal", fields: ["dni"], abr: "P" }],
+    // detailTables: [{ table: "personal", fields: ["dni"], abr: "P" }],
     sql: {
       where:
         isAdmin || context.forDump

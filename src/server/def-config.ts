@@ -7,7 +7,7 @@ db:
   host: localhost
   database: ggs_backups_db
   schema: ggs_backups
-  user: per_cen_admin
+  user: ggs_backups_admin
 data:
   transformers:
     text: normal
@@ -16,7 +16,6 @@ login:
   userFieldName: usuario
   passFieldName: md5clave
   rolFieldName: rol
-  infoFieldList: [usuario, rol, dni, comuna]
   activeClausule: activo
   unloggedLandPage: false
   plus:
@@ -32,7 +31,7 @@ client-setup:
 install:
   dump:
     db:
-      owner: per_cen_owner
+      owner: ggs_backups_owner
     enances: inline
     scripts:
       post-adapt:

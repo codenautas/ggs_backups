@@ -32,7 +32,7 @@
   "mixin-patch": {},
   "scripts": {
     "prepare": "npm run build",
-    "build": "tsc -p tsconfig-client.json && tsc -p tsconfig-server.json && tsc -p tsconfig-unlogged.json && mixin-patch",
+    "build": "tsc -p tsconfig-server.json && tsc -p tsconfig-unlogged.json && mixin-patch",
     "build-ignore-error": "(tsc -p tsconfig-client.json || echo \"continue w/error\") && (tsc -p tsconfig-server.json  || echo \"continue w/error\") && (tsc -p tsconfig-unlogged.json || echo \"continue w/error\") && mixin-patch",
     "build-cli": "(tsc -p tsconfig-client.json || echo \"continue w/error\") && (tsc -p tsconfig-unlogged.json || echo \"continue w/error\") && mixin-patch",
     "mixin-patch": "mixin-patch",

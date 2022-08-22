@@ -4,7 +4,6 @@
 import {
   AppBackend,
   ExpressPlus,
-  Context,
   Request,
   ClientModuleDefinition,
   OptsClientPage,
@@ -16,47 +15,10 @@ import * as MiniTools from "mini-tools";
 // import {changing} from 'best-globals';
 
 import { Proceduresggs_backups } from "./procedures-ggs_backups";
-
 import { usuarios } from "./table-usuarios";
 import { lotes } from "./table-lotes";
-import { estado_personal } from "./table-estado_personal";
-import { sinrec } from "./table-sinrec";
-import { listado_final } from "./table-listado_final";
-import { sedes } from "./table-sedes";
-import {
-  personal,
-  e_comuna,
-  e_fraccion,
-  e_radio,
-  e_segmento,
-} from "./table-personal";
 import { backups } from "./table-backups";
-import { externos_personal } from "./table-externos_personal";
-import { ultimo_externos } from "./table-ultimo_externos";
-import { ultimo_externos_personal } from "./table-externos_personal";
-import { provincias } from "./table-provincias";
-import { comunas } from "./table-comunas";
-import { fracciones } from "./table-fracciones";
-import { radios } from "./table-radios";
-import { dotacion } from "./table-dotacion";
-import { equipos } from "./table-equipos";
-import { puestos } from "./table-puestos";
-import { match_puestos } from "./table-match_puestos";
-import {
-  ultimo_control_estructura,
-  control_estructura,
-  control_estructura_d,
-  control_estructura_f,
-  control_estructura_r,
-  control_estructura_s,
-} from "./table-control_estructura";
-
 import { staticConfigYaml } from "./def-config";
-import { ContextForDump } from "backend-plus";
-
-//function json(sql:string, orderby:string){
-//    return `COALESCE((SELECT jsonb_agg(to_jsonb(j.*) ORDER BY ${orderby}) from (${sql}) as j),'[]'::jsonb)`
-//}
 
 export class Appggs_backups extends AppBackend {
   constructor() {
@@ -130,33 +92,7 @@ export class Appggs_backups extends AppBackend {
       ...this.getTableDefinition,
       usuarios,
       lotes,
-      estado_personal,
-      sedes,
-      personal,
-      sinrec,
-      listado_final,
-      externos: backups,
-      externos_personal,
-      ultimo_externos,
-      ultimo_externos_personal,
-      provincias,
-      comunas,
-      fracciones,
-      radios,
-      dotacion,
-      equipos,
-      puestos,
-      match_puestos,
-      e_comuna,
-      e_fraccion,
-      e_radio,
-      e_segmento,
-      control_estructura,
-      control_estructura_d,
-      control_estructura_f,
-      control_estructura_r,
-      control_estructura_s,
-      ultimo_control_estructura,
+      backups,
     };
   }
 }
