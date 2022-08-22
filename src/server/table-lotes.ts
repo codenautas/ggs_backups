@@ -1,18 +1,17 @@
 "use strict";
 
-import { TableDefinition, TableContext } from "./types-ggs_backups";
+import { TableDefinition } from "./types-ggs_backups";
 
-export function lotes(context: TableContext): TableDefinition {
-  var { isRecepcion, isProcesamiento } = context;
+export function lotes(): TableDefinition {
   return {
     name: "lotes",
     elementName: "lote",
-    editable: isRecepcion,
+    editable: true,
     fields: [
       { name: "lote", typeName: "integer", specialDefaultValue: "next_number" },
       { name: "recepcion", typeName: "date", specialDefaultValue: "current_date"},
       { name: "observaciones", typeName: "text", isName: true },
-      { name: "procesamiento", typeName: "text", editable: isProcesamiento },
+      { name: "procesamiento", typeName: "text" },
       { name: "cant", typeName: "bigint", inTable: false, editable: false },
     ],
     primaryKey: ["lote"],

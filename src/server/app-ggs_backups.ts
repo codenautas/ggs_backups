@@ -64,6 +64,7 @@ export class Appggs_backups extends AppBackend {
   getMenu(): MenuDefinition {
     var menuContent: MenuInfoBase[] = [];
     menuContent.push({ menuType: "table", name: "lotes" });
+    menuContent.push({ menuType: "table", name: "backups" });
     menuContent.push({ menuType: "menu", name: "config", label: "configurar",
         menuContent: [ { menuType: "table", name: "usuarios" }, ],
     });
