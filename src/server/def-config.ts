@@ -4,9 +4,10 @@ server:
   session-store: memory-saved
 db:
   motor: postgresql
+  description: solo schema para app ggs_backups
   host: localhost
-  database: ggs_backups_db
-  schema: ggs_backups
+  database: ggs_db
+  schema: backups
   user: ggs_backups_admin
 data:
   transformers:
@@ -31,15 +32,10 @@ client-setup:
 install:
   dump:
     db:
-      owner: ggs_backups_owner
+      owner: ggs_owner
     enances: inline
     scripts:
       post-adapt:
-      - ../node_modules/pg-triggers/lib/recreate-his.sql
-      - ../node_modules/pg-triggers/lib/table-changes.sql
-      - ../node_modules/pg-triggers/lib/function-changes-trg.sql
-      - ../node_modules/pg-triggers/lib/enance.sql
-      - personal_permisos_trg.sql      
 logo: 
   path: client/img
 `;

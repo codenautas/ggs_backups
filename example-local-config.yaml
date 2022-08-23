@@ -2,17 +2,8 @@ server:
   port: 3000
   base-url: /ggs_backups
 db:
-  description: base de prueba
-  host: localhost
   port: 5432
-  database: ggs_backups_db
-  schema: ggs_backups
-  user: ggs_backups_admin
-  password: CAMBIAR_ESTA_CLAVE
-install:
-  dump:
-    db:
-      owner: ggs_backups_owner
+  password: PONER PASSWORD USUARIO DB ADMIN
 client-setup:
   lang: es
 devel:
