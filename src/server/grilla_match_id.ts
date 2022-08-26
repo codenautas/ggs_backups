@@ -1,31 +1,27 @@
 "use strict";
 
+import { changing } from "best-globals";
 import { backups } from "./table-backups";
 import { TableDefinition } from "./types-ggs_backups";
 
 export function grilla_match_id(): TableDefinition {
-  var definition: TableDefinition = {
-    name: "matchs",
-    elementName: "match",
-    title: "Matchs por id",
-    tableName: "matchs",
-    editable:false,
-    fields: [
+    let def = backups();
+    const tem_hogar_fields = [
         //campos tem_hogar
-        {name:'idblaise'   ,  typeName: 'integer',  editable: true, nullable: false },
-        {name:'operativo'  ,  typeName: 'text',     editable: true, nullable: false },
-        {name:'enc'        ,  typeName: 'text',     editable: true, nullable: false },
-        {name:'hogar'      ,  typeName: 'integer',  editable: true, nullable: false },
-    ],
-    primaryKey: ["lote", "respid", 'idblaise'],
-    foreignKeys: [{ references: "lotes", fields: ["lote"] }],
-    sql:{
-        isTable:false,
-        from:`(select th.*, b.*
-            from backups b join base.tem_hogar th on (b.respid = th.idblaise::text)
-            where b.lote = (select max(lote) from lotes))`,
-    }
-  };
-  definition.fields= [...definition.fields, ...backups().fields]
-  return definition;
+        {name:'idblaise'   ,  typeName: 'integer',  editable: false },
+        {name:'operativo'  ,  typeName: 'text',     editable: false },
+        {name:'enc'        ,  typeName: 'text',     editable: false },
+        {name:'hogar'      ,  typeName: 'integer',  editable: false }
+    ]
+    //@ts-ignore
+    def.fields=[...def.fields, ...tem_hogar_fields]
+    def.sql = changing(def.sql||{}, 
+        {
+            isTable:false,
+            from:`(select th.*, b.*
+                from backups b join base.tem_hogar th on (b.respid = th.idblaise)
+                where b.lote = (select max(lote) from lotes))`,
+            insertIfNotUpdate:false
+        })
+  return def;
 }
