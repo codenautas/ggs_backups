@@ -20,6 +20,12 @@
       "outFiles": ["${workspaceFolder}/**/*.js"]
     },
     {
+        "type": "node",
+        "request": "launch",
+        "name": "runParseFields",
+        "program": "${workspaceFolder}/src/server/parse-fields.js",
+      },
+    {
       "type": "node",
       "request": "launch",
       "name": "dumpDb",
