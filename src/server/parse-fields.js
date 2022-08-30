@@ -1,24 +1,24 @@
 const fs = require('fs');
 
+const buildLine = (line, i) => `{name: "${line.name+(i||'')}", ${line.description? `description: "${line.description}",`:""} typeName: 'text', /*var_orig:'${line.var_orig}', orden:${line.orden},*/ editable:false}`
 try {
     const data = fs.readFileSync('src\\server\\local-fields.txt', 'utf8');
     const result = []
     //{name: 'childage_', typeName: 'text', var_orig:'childage_', editable:false, orden:450, repeat: 20},
-    data.split('\r\n').forEach(line => {
-        const lineObj = JSON.parse(line)
-        let newLine={}
-        //sort
+    const lines = data.split('\r\n').map(l=> JSON.parse(l))
+    lines.sort((a,b)=> a.orden-b.orden)
+    lines.forEach(lineObj => {
         if (lineObj.repeat){
+            // si tiene mas de 20 repeticiones le saco las últimas 5
+            lineObj.repeat = lineObj.repeat>=20? lineObj.repeat-5 : lineObj.repeat
             for (let i = 1; i <= lineObj.repeat; i++) {
-                result.push(`{name: '${lineObj.name+i}', ${lineObj.description? `description: '${lineObj.description}',`:""} typeName: 'text', /*var_orig:'${lineObj.var_orig}',*/ editable:false}`)
+                result.push(buildLine(lineObj,i))
             }
         }else{
-            result.push(`{name: '${lineObj.name}', ${lineObj.description? `description: '${lineObj.description}',`:""} typeName: 'text', /*var_orig:'${lineObj.var_orig}',*/ editable:false}`)
+            result.push(buildLine(lineObj))
         }
     })
-    console.log(result.join(',\r\n'))
-    // result.join(',\r\n').save();
-    // save result to file
+    fs.writeFileSync('src\\server\\local-generated-fields.txt', result.join(',\r\n'));
 } catch (err) {
   console.error(err);
 }
