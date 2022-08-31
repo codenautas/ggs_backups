@@ -4,6 +4,7 @@ const buildLine = (line, i) => `{name: "${line.name+(i||'')}", ${line.descriptio
 try {
     const data = fs.readFileSync('src\\server\\local-fields.txt', 'utf8');
     const result = []
+    const result2 = []
     //{name: 'childage_', typeName: 'text', var_orig:'childage_', editable:false, orden:450, repeat: 20},
     const lines = data.split('\r\n').map(l=> JSON.parse(l))
     lines.sort((a,b)=> a.orden-b.orden)
@@ -19,6 +20,9 @@ try {
         }
     })
     fs.writeFileSync('src\\server\\local-generated-fields.txt', result.join(',\r\n'));
+    // fs.writeFileSync('src\\server\\local-repeated-fields.txt', result2.join(',\r\n'));
 } catch (err) {
   console.error(err);
 }
+//para parsear el html: 
+//[...document.getElementsByClassName('question')].map(q=> return {name:q.id})
