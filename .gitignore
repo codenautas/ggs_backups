@@ -66,4 +66,5 @@ local-*
 
 #don't version generated files
 /dist
-src/server/ggs_backups-wsvscode.code-workspace
+src/parsing/extraer_disenio_cuestionario/paperversion_AR_30082022.html
+src/parsing/recortar_repetidos/GGP_AR_30Aug2022.csv

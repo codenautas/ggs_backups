@@ -23,7 +23,7 @@
         "type": "node",
         "request": "launch",
         "name": "runParseFields",
-        "program": "${workspaceFolder}/src/server/parse-fields.js",
+        "program": "${workspaceFolder}/src/parsing/recortar_repetidos/parseBackup.js",
       },
     {
       "type": "node",

@@ -25,3 +25,10 @@ Backups para ggs
    descs: description: "", por vacio
 6. corro parse-fields.js
 7. copiarse resultado y sacar respid (porque lo construye con type text y va con integer)
+
+# generando tabla backup por primera vez
+
+1. abrimos ultimo html de diseño de cuestionario en browser
+2. corremos script extraer_variables_en_html.js en consola del browser
+3. copiamos el resultado del script en campos-cuestionario-html.txt
+4. correr script parseBackup.js
