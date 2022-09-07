@@ -30,5 +30,5 @@ Backups para ggs
 
 1. abrimos ultimo html de diseño de cuestionario en browser
 2. corremos script extraer_variables_en_html.js en consola del browser
-3. copiamos el resultado del script en campos-cuestionario-html.txt
+3. copiamos el resultado del script en local-campos-cuestionario-html.txt
 4. correr script parseBackup.js

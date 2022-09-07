@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 try {
-    const datahtml = fs.readFileSync('src\\parsing\\recortar_repetidos\\campos-cuestionario-html.txt', 'utf8');
+    const datahtml = fs.readFileSync('src\\parsing\\recortar_repetidos\\local-campos-cuestionario-html.txt', 'utf8');
     // construir un arreglo indexado [id, desc] para buscar la descripción
     let htmlFields = {}
     datahtml.split('\r\n').forEach((line, idx) => {
