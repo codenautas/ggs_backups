@@ -1,26 +1,39 @@
 const fs = require('fs');
 
+/**
+ * Este script se utiliza para realizar el proceso descripto en README.md sección "## 2) generando campos desde nuevo backup"
+ */
+
 try {
+    /**
+     * parsea campos previamente tomados del html en un objeto indexado {id: {desc, orden}}
+     * este objeto se va a utilizar para agregarle descripción y orden a los campos tomados del backup
+     */
     const datahtml = fs.readFileSync('src\\parsing\\recortar_repetidos\\local-campos-cuestionario-html.txt', 'utf8');
-    // construir un arreglo indexado [id, desc] para buscar la descripción
     let htmlFields = {}
     datahtml.split('\r\n').forEach((line, idx) => {
         const [id, desc] = line.split('|')
         htmlFields[id.toLowerCase()] = {desc, orden:idx}
     })
 
+    /**
+     * Recorre header del archivo csv del backup para tomar los campos y crear los fields para BEPlus
+     * 1. Recorta a 16 los campos repetidos de hijos, conyuges y otros miembros los cuales vienen con 20 repeticiones
+     * 2. Ordena los campos del backup según diseño html (los que no encuentra van al final)
+     * 3. Para cada campo agrega descripción tomandola del diseño html
+     */
     const data = fs.readFileSync('src\\parsing\\recortar_repetidos\\GGP_AR_30Aug2022.csv', 'utf8');
     const headerLine = data.split('\r\n')[0]
-    let fieldNames = headerLine.split(';')
-
     let result = []
     let prevFN= ''
     let repCounter =0
     let attrFromHtml=''
+    let orden=null;
+    let backupFieldInHtml
+    let terminoRepetido = true
     headerLine.split(';').forEach(backupfieldName => {
-        let backupFieldInHtml = htmlFields[backupfieldName]
+        backupFieldInHtml = htmlFields[backupfieldName]
         attrFromHtml = ''
-        let terminoRepetido = true
         if (/.*_(fulldate)?\d+$/.test(backupfieldName)){
             terminoRepetido=false
             //es un repetido
@@ -40,6 +53,7 @@ try {
             }
             terminoRepetido=true
         }
+
         if (terminoRepetido){
             if(repCounter==19){
                 // terminó repetición y es 19 (20 fields iguales) entonces recortamos 4
@@ -49,12 +63,10 @@ try {
             }
             repCounter=0
         }
-        
         if (!backupFieldInHtml){
             attrFromHtml += `/*no está en html*/`
         }
-        let orden = (backupFieldInHtml?.orden +1) || 1000
-        
+        orden = (backupFieldInHtml?.orden +1) || 1000
         result.push({fieldString: `{name: "${backupfieldName}", ${attrFromHtml} typeName: 'text', editable:false /*ordenhtml ${orden}*/},`, orden: orden})
         prevFN=backupfieldName
     })
