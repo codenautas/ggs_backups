@@ -29,6 +29,7 @@ Backups para ggs
    a. correr create user admin (SIN CREACIÓN DB) (el owner no porque es el mismo)
    b. grant connect on database "ggs_db" to "ggs_backups_admin";
    c. grant select on base.tem_hogar to ggs_backups_admin;
+   d. grant usage on schema "base" to ggs_backups_admin;
 3. al final del archivo db-dump.sql agregarle prefijo "base." a los llamados a enance_table
 
 ## TODO, automarizar:
