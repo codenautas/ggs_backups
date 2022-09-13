@@ -6,7 +6,7 @@ Backups para ggs
 
 ## 1) Analizamos si vienen columnas diferentes al backup anterior
 
-1. hacemos comparación de texto de 1era fila del CSV del backup actual contra el anterior
+1. hacemos comparación de texto de 1era fila del CSV del backup actual contra el anterior (analizar por linea)
 2. si tiene las mismas columnas que el backup anterior -> ir a paso 3) "Importar Backup"
 3. si agrega nuevas columnas -> ir a paso 2) "generando campos desde nuevo backup"
 4. si saca columnas previas -> analizar que hacer (por ahora dejamos pendiente)
@@ -17,9 +17,9 @@ Backups para ggs
 2. abrimos ultimo html de diseño de cuestionario en browser
 3. corremos script extraer_variables_en_html.js en consola del browser
 4. copiamos el resultado del script en local-campos-cuestionario-html.txt
-5. copiamos excel de backup en carpeta src/parsing/recortar_repetidos y actualizamos referencia en parseBackup.js e ignoramos el archivo en .gitignore
+5. copiamos archivo csv del backup en carpeta src/parsing/recortar_repetidos, le dejamos solo el header (la primera linea) y actualizamos referencia en parseBackup.js
 6. correr script por debugger VSCode o por consola: $ node src/parsing/recortar_repetidos/parseBackup.js
-7. copiar resultado a sección fields de table_backups.ts
+7. copiar resultado de local-generated-fields.txt a sección fields de table_backups.ts
 8. sacar respid (porque lo construye con type text y va con integer)
 
 ## regenerar tables_backup

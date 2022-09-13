@@ -14,6 +14,7 @@ export function backups(): TableDefinition {
         //campo propios:
         { name: "lote", typeName: "integer" },
         { name: "verificado_procesamiento", typeName: "text"},
+        { name: "observaciones", typeName: "boolean"},
 
         //campos fuentes externas:
         {name: "respid", description: "Respondent ID", typeName: 'integer', editable:false},
@@ -1480,8 +1481,10 @@ export function backups(): TableDefinition {
         {name: "instrument", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
         {name: "gen41a_3601", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
         {name: "gen41b_3601", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
-        {name: "gen48", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
-        {name: "gen50", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
+        {name: "gen48_3601", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
+        {name: "gen48_3602", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
+        {name: "gen50_3601", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
+        {name: "gen50_3602", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
         {name: "wrk04_3601", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
         {name: "wrk04_3602", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
         {name: "wrk27_3601", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
@@ -1498,8 +1501,11 @@ export function backups(): TableDefinition {
         {name: "breportrep05", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
         {name: "breportrep06", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
         {name: "breportrep07", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
+        {name: "complete", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
+        {name: "agreedintro", /*no está en html*/ typeName: 'text', editable:false /*ordenhtml 1000*/},
     ],
     primaryKey: ["lote", "respid"],
+    constraints:[{constraintType:'unique', fields:['respid', 'verificado_procesamiento']}],
     foreignKeys: [{ references: "lotes", fields: ["lote"] }],
     // hiddenColumns: [
     //    "modificado",

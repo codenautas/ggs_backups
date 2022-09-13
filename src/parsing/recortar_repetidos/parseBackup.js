@@ -22,7 +22,7 @@ try {
      * 2. Ordena los campos del backup según diseño html (los que no encuentra van al final)
      * 3. Para cada campo agrega descripción tomandola del diseño html
      */
-    const data = fs.readFileSync('src\\parsing\\recortar_repetidos\\GGP_AR_30Aug2022.csv', 'utf8');
+    const data = fs.readFileSync('src\\parsing\\recortar_repetidos\\GGP_AR_13Sep2022.csv', 'utf8');
     const headerLine = data.split('\r\n')[0]
     let result = []
     let prevFN= ''
