@@ -41,7 +41,7 @@ Backups para ggs
 ## 3) Importar backup
 
 1. Generar excel desde backup CSV
-2. crear lote
+2. crear nuevo lote 
 3. desplegar detalle B del lote
 4. importar archivo (tildar "saltear columnas que no existan")
 5. analizar si los salteados son solamente los repetidos del \_17 al \_20 haciendo comparación de archivo ultimos_salteados.txt con el output de la importación) (reemplazar ', ' por '\n')
