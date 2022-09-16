@@ -13,8 +13,8 @@ export function backups(): TableDefinition {
     fields: [
         //campo propios:
         { name: "lote", typeName: "integer" },
-        { name: "verificado_procesamiento", typeName: "boolean"},
-        { name: "observaciones", typeName: "text"},
+        { name: "verificado_procesamiento", title:'verif proc', typeName: "boolean"},
+        { name: "observaciones", title:'obs backup', typeName: "text"},
 
         //campos fuentes externas:
         {name: "respid", description: "Respondent ID", typeName: 'integer', editable:false},
