@@ -1506,7 +1506,8 @@ export function backups(): TableDefinition {
     ],
     primaryKey: ["lote", "respid"],
     constraints:[
-        {constraintType:'check', expr:'verificado_procesamiento is true', consName:'verificado_procesamiento puede ser true o nulo'},
+        {constraintType:'unique', fields:['respid', 'verificado_procesamiento']},
+        {constraintType:'check', expr:'verificado_procesamiento in (null,true)', consName:'verificado_procesamiento puede true o nulo'},
     ],
     foreignKeys: [{ references: "lotes", fields: ["lote"] }],
     // hiddenColumns: [
