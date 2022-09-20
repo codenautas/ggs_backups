@@ -3,7 +3,7 @@
 import { TableDefinition, TableContext } from "./types-ggs_backups";
 
 export function usuarios(context: TableContext): TableDefinition {
-  var { isAdmin } = context;
+  let isAdmin=context.user.rol==='admin';
   return {
     name: "usuarios",
     elementName: "usuario",

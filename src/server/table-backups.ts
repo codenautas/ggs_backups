@@ -14,6 +14,7 @@ export function backups(): TableDefinition {
         //campo propios:
         { name: "verificado_procesamiento", title:'verif proc', typeName: "boolean"},
         { name: "observaciones", title:'obs backup', typeName: "text"},
+        { name: "resul_proc", typeName: "integer"},
         { name: "lote", typeName: "integer" },
         //campos fuentes externas:
         {name: "respid", description: "Respondent ID", typeName: 'integer', editable:false},
