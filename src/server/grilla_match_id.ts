@@ -6,7 +6,8 @@ import { TableDefinition } from "./types-ggs_backups";
 
 export function grilla_match_id(): TableDefinition {
     let def = backups();
-    const tem_hogar_fields = [
+    def.title='Grilla de validación de Blaise (matching)'
+    const ggs_fields = [
         //campos base.tem_hogar
         {name:'idblaise'   ,  typeName: 'integer',  editable: false },
         {name:'operativo'  ,  typeName: 'text',     editable: false },
@@ -14,23 +15,28 @@ export function grilla_match_id(): TableDefinition {
         {name:'hogar'      ,  typeName: 'integer',  editable: false },
         //campos base.personas intercalados con campos espejo de backups (age,dem01,asex,dobm,doby)
         //podriamos agregar una variable construida con la comparacion de estos campos como en la grilla del censo
-         {name:'nombre'    ,  typeName: 'text'   ,  editable: false },
-         {name:'edad'      ,  typeName: 'bigint' ,  editable: false },
-         {name:'ageb'      ,  typeName: 'text'   , label:'edad backup', editable: false },
-         {name:'sexo'      ,  typeName: 'bigint' ,  editable: false },
-         {name:'dem01b'    ,  typeName: 'text'   ,  label:'dem01 backup', editable: false },
-         {name:'asexb'     ,  typeName: 'text'   ,  label:'asex backup', editable: false },
-         {name:'nacms'     ,  typeName: 'text'   ,  editable: false },
-         {name:'dobmb'     ,  typeName: 'text'   ,  label:'mes backup', editable: false },
-         {name:'dobyb'     ,  typeName: 'text'   ,  label:'año backup', editable: false },
+        {name:'nombre'    ,  typeName: 'text'   ,  editable: false },
+        {name:'edad'      ,  typeName: 'bigint' ,  editable: false },
+        {name:'ageb'      ,  typeName: 'text'   , label:'edad backup', editable: false },
+        {name:'sexo'      ,  typeName: 'bigint' ,  editable: false },
+        {name:'dem01b'    ,  typeName: 'text'   ,  label:'dem01 backup', editable: false },
+        {name:'asexb'     ,  typeName: 'text'   ,  label:'asex backup', editable: false },
+        {name:'nacms'     ,  typeName: 'text'   ,  editable: false },
+        {name:'dobmb'     ,  typeName: 'text'   ,  label:'mes backup', editable: false },
+        {name:'dobyb'     ,  typeName: 'text'   ,  label:'año backup', editable: false },
         //campos base.tem
         {name:'rea'      ,  typeName: 'integer',  editable: false },
         {name:'norea'      ,  typeName: 'integer',  editable: false },
         //campos base.tareas_tem
         {name:'verif_campo'      ,  typeName: 'text',  editable: false },
     ]
+
+    // en la grilla de matching no se puede codificar
+    const codificacionFields = ['cno_padre','ciuo_padre','cno_madre','ciuo_madre','cno_ocup_actual','ciuo_ocup_actual','cno_ocup_anterior','ciuo_ocup_anterior','cno_ocup_pareja','ciuo_ocup_pareja']
+    codificacionFields.forEach(codFieldName=>def.fields.find(f=>f.name===codFieldName)!.editable=false)
+
     //@ts-ignore
-    def.fields=[...tem_hogar_fields, ...def.fields]
+    def.fields=[...ggs_fields, ...def.fields]
     def.sql = changing(def.sql||{}, 
         {
             isTable:false,

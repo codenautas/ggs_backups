@@ -15,7 +15,24 @@ export function backups(): TableDefinition {
         { name: "verificado_procesamiento", title:'verif proc', typeName: "boolean"},
         { name: "observaciones", title:'obs backup', typeName: "text"},
         { name: "resul_proc", typeName: "integer"},
-        { name: "lote", typeName: "integer" },
+        
+        // ['dem06', 'dem07', 'wrk02', 'wrk04_3601', 'wrk04_3602', 'wrk06', 'wrk07', 'wrk09', 'wrk10', 'wrk11', 'wrk12', 'wrk14', 'wrk17', 'wrk18', 'wrk22', 'wrk23'], 
+        // ['CNO_ocup_actual', 'CIUO_ocup_actual']
+
+        //campos para codificacion
+        { name: "cno_padre",        typeName: "integer"},
+        { name: "ciuo_padre",       typeName: "integer"},
+        { name: "cno_madre",        typeName: "integer"},
+        { name: "ciuo_madre",       typeName: "integer"},
+        { name: "cno_ocup_actual",  typeName: "integer"},
+        { name: "ciuo_ocup_actual", typeName: "integer"},
+        { name: "cno_ocup_anterior",  typeName: "integer"},
+        { name: "ciuo_ocup_anterior", typeName: "integer"},
+        { name: "cno_ocup_pareja",  typeName: "integer"},
+        { name: "ciuo_ocup_pareja", typeName: "integer"},
+
+        { name: "lote", typeName: "integer", editable: false},
+
         //campos fuentes externas:
         {name: "respid", description: "Respondent ID", typeName: 'integer', editable:false},
 
