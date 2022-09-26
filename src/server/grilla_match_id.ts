@@ -31,12 +31,28 @@ export function grilla_match_id(): TableDefinition {
         {name:'verif_campo'      ,  typeName: 'text',  editable: false },
     ]
 
-    // en la grilla de matching no se puede codificar
-    const codificacionFields = ['cno_padre','ciuo_padre','cno_madre','ciuo_madre','cno_ocup_actual','ciuo_ocup_actual','cno_ocup_anterior','ciuo_ocup_anterior','cno_ocup_pareja','ciuo_ocup_pareja']
-    codificacionFields.forEach(codFieldName=>def.fields.find(f=>f.name===codFieldName)!.editable=false)
-
+    // Gladys no pidió que se muestren los campos de codificación
+    // // en la grilla de matching no se puede codificar
+    // const codificacionFields = ['cno_padre','ciuo_padre','cno_madre','ciuo_madre','cno_ocup_actual','ciuo_ocup_actual','cno_ocup_anterior','ciuo_ocup_anterior','cno_ocup_pareja','ciuo_ocup_pareja']
+    // codificacionFields.forEach(codFieldName=>def.fields.find(f=>f.name===codFieldName)!.editable=false)
+    
     //@ts-ignore
     def.fields=[...ggs_fields, ...def.fields]
+    
+    // Solo se ven campos que pide procesamiento
+    def.fields.forEach(f=>f.visible=false); // set all not visible
+    const fieldsToShow = ['idblaise', 'operativo', 'enc', 'hogar', 'nombre', 'edad', 'ageb', 'sexo', 'dem01b', 'asexb', 'nacms', 'dobmb', 'dobyb', 'rea', 'norea', 'verif_campo', 'verificado_procesamiento', 'observaciones', 'resul_proc', 'lote', 'observaciones', 'respid', 'int01', 'int02', 'dem01', 'dem02', 'dem03', 'dem06', 'dem07', 'dem08', 'dem09', 'dem11', 'dem14', 'dem21', 'gen01', 'gen02', 'gen11', 'gen25', 'gen44b', 'hhd24a', 'hhd28', 'hhd35', 'wel01', 'wel02', 'wel02a', 'lhi01', 'lhi02', 'att08', 'breportrep01', 'breportrep04', 'breportrep02', 'breportrep06', 'breportrep07', 'complete', 'agreedintro', 'begindate', 'begintime', 'enddate', 'endtime', 'numbiol', 'numstep', 'numadopt', 'totalchildren', 'hhd01b']
+
+    fieldsToShow.forEach(fNameToShow=>{
+        const fieldToShow=def.fields.find(f=>f.name===fNameToShow)
+        if (fieldToShow) {
+            fieldToShow.visible = true
+        } else {
+            throw new Error('columna no existente '+ fNameToShow)
+        }
+
+    })
+
     def.sql = changing(def.sql||{}, 
         {
             isTable:false,
