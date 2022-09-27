@@ -73,9 +73,10 @@ export function grilla_match_id(): TableDefinition {
                                     and tarea in ('encu','recu') and asignado is not null and operacion is not null
                     ) as tt on true
                     left join backups otrob on b.respid=otrob.respid and otrob.lote <>b.lote and otrob.verificado_procesamiento
-                    where b.verificado_procesamiento 
-                        or (b.lote = (select max(lote) from lotes)) and
-                        otrob.respid is null)`,
+                    where 
+                        b.verificado_procesamiento
+                        or (b.lote = (select max(lote) from lotes))
+                        and otrob.respid is null)`,
             insertIfNotUpdate:false
         })
   return def;
