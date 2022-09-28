@@ -6,7 +6,7 @@ import { TableDefinition } from "./types-ggs_backups";
 
 export function grilla_match_id(): TableDefinition {
     let def = backups();
-    def.title='Grilla de validación de Blaise (matching)'
+    def.title='Consistencias Blaise'
     const ggs_fields = [
         //campos base.tem_hogar
         {name:'idblaise'   ,  typeName: 'integer',  editable: false },

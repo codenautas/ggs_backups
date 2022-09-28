@@ -71,7 +71,7 @@ export class Appggs_backups extends AppBackend {
     var menuContent: MenuInfoBase[] = [];
     menuContent.push({ menuType: "table", name: "lotes" });
     menuContent.push({ menuType: "table", name: "backups" });
-    menuContent.push({ menuType: "table", name: "grilla_match_id", label: 'match backup'});
+    menuContent.push({ menuType: "table", name: "grilla_match_id", label: 'Consistencias Blaise'});
     menuContent.push({ menuType: "menu", name: "codificacion", label: "codificación",
         menuContent: [ 
             { menuType: "table", name: "cod_padre"},
