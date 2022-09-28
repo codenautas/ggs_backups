@@ -3,7 +3,7 @@
 import { grilla_match_id } from "./grilla_match_id";
 import { FieldDefinition, TableDefinition } from "./types-ggs_backups";
 
-export function cod_base(fieldsToCheck:string[], fieldsToCode:string[]): TableDefinition {
+export function cod_base(fieldsToCheck:(string|{name:string, editable:boolean})[], fieldsToCode:string[]): TableDefinition {
     let def = grilla_match_id();
     def.title='Grilla codificación '
     const backupfieldsToShow = [
@@ -17,7 +17,7 @@ export function cod_base(fieldsToCheck:string[], fieldsToCode:string[]): TableDe
         {name:'resul_proc', editable: false},
         {name:'observaciones', editable: false},
                 // codif
-        ...fieldsToCheck.map(f=> {return {name:f}}),
+        ...fieldsToCheck.map(fieldOrfieldName=> typeof fieldOrfieldName === 'string'? {name:fieldOrfieldName}: fieldOrfieldName ),
         ...fieldsToCode.map(f=> {return {name:f, editable: true}})
     ]
 
