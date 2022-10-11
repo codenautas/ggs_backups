@@ -45,12 +45,8 @@ export function grilla_match_id(): TableDefinition {
 
     fieldsToShow.forEach(fNameToShow=>{
         const fieldToShow=def.fields.find(f=>f.name===fNameToShow)
-        if (fieldToShow) {
-            fieldToShow.visible = true
-        } else {
-            throw new Error('columna no existente '+ fNameToShow)
-        }
-
+        if (!fieldToShow) throw new Error('columna no existente '+ fNameToShow)
+        fieldToShow.visible = true
     })
 
     def.sql = changing(def.sql||{}, 
