@@ -20,6 +20,7 @@ import { lotes } from "./table-lotes";
 import { backups } from "./table-backups";
 import { staticConfigYaml } from "./def-config";
 import { grilla_match_id } from "./grilla_match_id";
+import { grilla_rea_sin_blaise } from "./grilla-rea_sin_blaise";
 import { cod_padre } from "./grilla-cod_padre";
 import { cod_madre } from "./grilla-cod_madre";
 import { cod_ocupacion_actual } from "./grilla-cod_ocupacion_actual";
@@ -72,6 +73,7 @@ export class Appggs_backups extends AppBackend {
     menuContent.push({ menuType: "table", name: "lotes" });
     menuContent.push({ menuType: "table", name: "backups" });
     menuContent.push({ menuType: "table", name: "grilla_match_id", label: 'Consistencias Blaise'});
+    menuContent.push({ menuType: "table", name: "grilla_rea_sin_blaise", label: 'Rea sin Blaise'});
     menuContent.push({ menuType: "menu", name: "codificacion", label: "codificación",
         menuContent: [ 
             { menuType: "table", name: "cod_padre"},
@@ -111,6 +113,7 @@ export class Appggs_backups extends AppBackend {
       lotes,
       backups,
       grilla_match_id,
+      grilla_rea_sin_blaise,
       cod_padre,
       cod_madre,
       cod_ocupacion_actual,
