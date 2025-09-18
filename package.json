@@ -16,11 +16,11 @@
     "json4all": "~1.1.0",
     "like-ar": "~0.3.6",
     "mini-tools": "~1.11.2",
-    "npm-check-updates": "^12.5.11",
     "pg-triggers": "~0.3.2"
   },
   "devDependencies": {
     "source-map-loader": "^3.0.1",
+    "npm-check-updates": "^12.5.11",
     "ts-loader": "^9.3.0",
     "typescript": "^4.6.4",
     "webpack": "^5.72.0",

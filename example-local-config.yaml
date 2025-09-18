@@ -2,8 +2,14 @@ server:
   port: 3000
   base-url: /ggs_backups
 db:
-  port: 5432
-  password: PONER PASSWORD USUARIO DB ADMIN
+  port: 5433
+  database: ggs2025_db
+  password: PONER PASSSWORD
+  user: ggs2025_backups_admin
+install:
+  dump:
+    db:
+      owner: ggs2025_owner
 client-setup:
   lang: es
 devel:
